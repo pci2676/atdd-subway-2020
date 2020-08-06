@@ -18,7 +18,7 @@ public class DistanceChargeStrategy implements ChargeStrategy {
     }
 
     @Override
-    public int apply(final SubwayPath subwayPath, final Map<Long, Station> stations, final int fare) {
+    public int apply(final SubwayPath subwayPath, final Map<Long, Station> stations) {
         int distance = subwayPath.calculateDistance();
         DistanceChargers distanceChargers = DistanceCharger.findByDistance(distance);
         return distanceChargers.calculateCharge(distance);

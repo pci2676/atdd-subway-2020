@@ -22,4 +22,8 @@ public enum FarePolicy {
                 .filter(farePolicy -> farePolicy.chargeStrategy.fulfill(subwayPath, stations))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), FarePolicies::new));
     }
+
+    public int getCharege(SubwayPath subwayPath, Map<Long, Station> stations) {
+        return this.chargeStrategy.apply(subwayPath, stations);
+    }
 }

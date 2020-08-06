@@ -8,5 +8,5 @@ import java.util.Map;
 public interface ChargeStrategy {
     boolean fulfill(SubwayPath subwayPath, Map<Long, Station> stations);
 
-    int apply(SubwayPath subwayPath, Map<Long, Station> stations, int fare);
+    int apply(SubwayPath subwayPath, Map<Long, Station> stations);
 }

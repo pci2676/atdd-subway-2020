@@ -1,6 +1,10 @@
 package wooteco.subway.maps.map.domain.fare;
 
+import wooteco.subway.maps.map.domain.SubwayPath;
+import wooteco.subway.maps.station.domain.Station;
+
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class FarePolicies {
@@ -8,6 +12,14 @@ public class FarePolicies {
 
     public FarePolicies(final List<FarePolicy> farePolicies) {
         this.farePolicies = farePolicies;
+    }
+
+    public int calculateFare(SubwayPath subwayPath, Map<Long, Station> stations) {
+        int fare = 0;
+        for (FarePolicy farePolicy : farePolicies) {
+            fare = fare + farePolicy.getCharege(subwayPath, stations);
+        }
+        return fare;
     }
 
     @Override

@@ -34,4 +34,18 @@ class FarePolicyTest {
         //then
         assertThat(farePolicies).isEqualTo(new FarePolicies(Arrays.asList(DISTANCE_POLICY, DEFAULT_POLICY)));
     }
+
+    @Test
+    void getFate() {
+        //given
+        when(subwayPath.calculateDistance()).thenReturn(15);
+
+        //when
+        FarePolicies farePolicies = FarePolicy.findBy(subwayPath, new HashMap<>());
+        int calculateFare = farePolicies.calculateFare(subwayPath, new HashMap<>());
+
+        //then
+        assertThat(calculateFare).isEqualTo(1350);
+    }
+
 }
