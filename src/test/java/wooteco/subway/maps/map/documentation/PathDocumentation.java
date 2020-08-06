@@ -34,6 +34,7 @@ public class PathDocumentation extends Documentation {
 
     @Autowired
     private MapController mapController;
+
     @MockBean
     private MapService mapService;
 
@@ -50,7 +51,8 @@ public class PathDocumentation extends Documentation {
                         new StationResponse(2L, "선릉", LocalDateTime.now(), LocalDateTime.now())
                 ),
                 3,
-                4
+                4,
+                1250
         );
 
         when(mapService.findPath(any(), any(), any())).thenReturn(pathResponse);
@@ -84,7 +86,8 @@ public class PathDocumentation extends Documentation {
                                         fieldWithPath("stations.[].id").type(JsonFieldType.NUMBER).description("노선 아이디"),
                                         fieldWithPath("stations.[].name").type(JsonFieldType.STRING).description("노선 이름"),
                                         fieldWithPath("duration").type(JsonFieldType.NUMBER).description("총 시간"),
-                                        fieldWithPath("distance").type(JsonFieldType.NUMBER).description("총 시간")
+                                        fieldWithPath("distance").type(JsonFieldType.NUMBER).description("총 시간"),
+                                        fieldWithPath("fare").type(JsonFieldType.NUMBER).description("요금")
                                 )
                         )
                 ).
