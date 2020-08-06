@@ -50,15 +50,15 @@ class DistanceChargerTest {
         assertThat(charge).isEqualTo(expectCharge);
     }
 
-    @DisplayName("과금 정책에 따른 과금 적용")
+    @DisplayName("거리에 따른 전체 과금의 합 구하기")
     @ParameterizedTest
-    @CsvSource(value = {"11,1250", "15,1350", "58,2150"})
+    @CsvSource(value = {"11,0", "15,100", "50,800", "58,900"})
     void charge(int distance, int expectFare) {
         //given
         DistanceChargers distanceChargers = DistanceCharger.findByDistance(distance);
 
         //when
-        int fare = distanceChargers.calculateFare(distance);
+        int fare = distanceChargers.calculateCharge(distance);
 
         //then
         assertThat(fare).isEqualTo(expectFare);

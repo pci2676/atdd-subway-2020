@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public enum DistanceCharger {
-    TEN_TO_FIFTY(distance -> distance > 10, 10, 51, 5, 100),
+    TEN_TO_FIFTY(distance -> distance > 10, 10, 50, 5, 100),
     OVER_FIFTY(distance -> distance > 50, 50, Integer.MAX_VALUE, 8, 100);
 
     private final Predicate<Integer> strategy;
@@ -29,7 +29,9 @@ public enum DistanceCharger {
     }
 
     public int charge(int distance) {
-        distance = distance % this.boundary;
+        if (distance > this.boundary) {
+            distance = this.boundary;
+        }
         distance = distance - this.startDistance;
         int count = distance / countUnit;
         return count * chargeUnit;
