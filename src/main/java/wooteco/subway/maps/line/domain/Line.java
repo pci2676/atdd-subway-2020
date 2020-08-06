@@ -56,6 +56,7 @@ public class Line extends BaseEntity {
     }
 
     public void addLineStation(LineStation lineStation) {
+        lineStation.placeLine(this);
         lineStations.add(lineStation);
     }
 

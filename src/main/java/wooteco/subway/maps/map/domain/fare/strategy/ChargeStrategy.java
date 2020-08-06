@@ -1,4 +1,4 @@
-package wooteco.subway.maps.map.domain.fare;
+package wooteco.subway.maps.map.domain.fare.strategy;
 
 import wooteco.subway.maps.map.domain.SubwayPath;
 import wooteco.subway.maps.station.domain.Station;

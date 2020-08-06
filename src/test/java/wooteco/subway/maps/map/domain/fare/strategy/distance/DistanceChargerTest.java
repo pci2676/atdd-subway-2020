@@ -1,4 +1,4 @@
-package wooteco.subway.maps.map.domain.fare.distance;
+package wooteco.subway.maps.map.domain.fare.strategy.distance;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,8 +10,8 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static wooteco.subway.maps.map.domain.fare.distance.DistanceCharger.OVER_FIFTY;
-import static wooteco.subway.maps.map.domain.fare.distance.DistanceCharger.TEN_TO_FIFTY;
+import static wooteco.subway.maps.map.domain.fare.strategy.distance.DistanceCharger.OVER_FIFTY;
+import static wooteco.subway.maps.map.domain.fare.strategy.distance.DistanceCharger.TEN_TO_FIFTY;
 
 class DistanceChargerTest {
 

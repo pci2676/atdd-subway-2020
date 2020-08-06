@@ -1,4 +1,4 @@
-package wooteco.subway.maps.map.domain.fare.distance;
+package wooteco.subway.maps.map.domain.fare.strategy.distance;
 
 import java.util.Arrays;
 import java.util.function.Predicate;

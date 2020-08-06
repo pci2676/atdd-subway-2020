@@ -17,7 +17,7 @@ public class FarePolicies {
     public int calculateFare(SubwayPath subwayPath, Map<Long, Station> stations) {
         int fare = 0;
         for (FarePolicy farePolicy : farePolicies) {
-            fare = fare + farePolicy.getCharege(subwayPath, stations);
+            fare = fare + farePolicy.getCharge(subwayPath, stations);
         }
         return fare;
     }

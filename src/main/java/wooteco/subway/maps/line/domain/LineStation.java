@@ -1,6 +1,13 @@
 package wooteco.subway.maps.line.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +22,9 @@ public class LineStation {
     private Integer distance;
     private Integer duration;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Line line;
+
     public LineStation() {
     }
 
@@ -27,6 +37,10 @@ public class LineStation {
 
     public boolean isSame(LineStation newLineStation) {
         return Objects.equals(this.stationId, newLineStation.stationId);
+    }
+
+    public void placeLine(Line line) {
+        this.line = line;
     }
 
     public Long getStationId() {
@@ -43,6 +57,10 @@ public class LineStation {
 
     public Integer getDuration() {
         return duration;
+    }
+
+    public Integer getExtraCharge() {
+        return line.getExtraCharge();
     }
 
     public void updatePreStationTo(Long newPreStationId) {
