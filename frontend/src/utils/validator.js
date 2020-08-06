@@ -1,12 +1,12 @@
 const validator = {
   path: {
-    source: [],
-    target: []
+    source: [(v) => !!v || '출발지가 필요합니다.'],
+    target: [(v) => !!v || '목적지가 필요합니다.']
   },
   departureTime: {
-    dayTime: [],
-    hour: [],
-    minute: []
+    dayTime: [(v) => !!v || '오전/오후 입력이 필요합니다.'],
+    hour: [(v) => !!v || '시간 입력이 필요합니다.'],
+    minute: [(v) => !!v || '분 입력이 필요합니다.']
   },
   stationName: [(v) => !!v || '이름 입력이 필요합니다.', (v) => v.length > 0 || '이름은 1글자 이상 입력해야 합니다.'],
   line: {

@@ -6,12 +6,12 @@ const ApiService = {
   init() {
     Vue.use(VueAxios, axios)
   },
-  get(uri, params, header) {
-    header = header || {};
+  get(uri, params) {
+    const authHeader = `${localStorage.getItem('token')}` == null ? {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    } : {};
     return Vue.axios.get(`${uri}`, {
-      headers: header || {
-        Authorization: `Bearer ${localStorage.getItem('token')}` || ''
-      },
+      headers: authHeader,
       params: params
     })
   },

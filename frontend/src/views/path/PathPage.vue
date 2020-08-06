@@ -9,25 +9,27 @@
           <div class="px-4 pb-6">
             <div class="d-flex width-100">
               <v-select
-                v-model="path.source"
-                class="pr-4 path-station-select"
-                :items="allStationsView"
-                label="출발역"
-                color="grey darken-1"
-                item-color="amber darken-3"
-                outlined
-                dense
+                      v-model="path.source"
+                      class="pr-4 path-station-select"
+                      :items="allStationsView"
+                      :rules="rules.path.source"
+                      label="출발역"
+                      color="grey darken-1"
+                      item-color="amber darken-3"
+                      outlined
+                      dense
               ></v-select>
               <v-icon class="relative bottom-15">mdi-arrow-right-bold</v-icon>
               <v-select
-                v-model="path.target"
-                class="pl-4 path-station-select"
-                :items="allStationsView"
-                label="도착역"
-                color="grey darken-1"
-                item-color="amber darken-3"
-                outlined
-                dense
+                      v-model="path.target"
+                      class="pl-4 path-station-select"
+                      :items="allStationsView"
+                      :rules="rules.path.target"
+                      label="도착역"
+                      color="grey darken-1"
+                      item-color="amber darken-3"
+                      outlined
+                      dense
               ></v-select>
             </div>
             <div class="d-flex mb-4">
