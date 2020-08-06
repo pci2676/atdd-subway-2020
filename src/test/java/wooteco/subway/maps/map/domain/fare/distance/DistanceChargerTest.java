@@ -1,13 +1,12 @@
 package wooteco.subway.maps.map.domain.fare.distance;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,30 +17,50 @@ class DistanceChargerTest {
 
     private static Stream<Arguments> discountChargerProvier() {
         return Stream.of(
-                Arguments.arguments(11, Arrays.asList(TEN_TO_FIFTY).toArray(new DistanceCharger[0])),
-                Arguments.arguments(50, Arrays.asList(TEN_TO_FIFTY).toArray(new DistanceCharger[0])),
-                Arguments.arguments(51, Arrays.asList(TEN_TO_FIFTY, OVER_FIFTY).toArray(new DistanceCharger[0]))
+                Arguments.arguments(11, new DistanceChargers(Arrays.asList(TEN_TO_FIFTY))),
+                Arguments.arguments(50, new DistanceChargers(Arrays.asList(TEN_TO_FIFTY))),
+                Arguments.arguments(51, new DistanceChargers(Arrays.asList(TEN_TO_FIFTY, OVER_FIFTY)))
         );
     }
 
     @DisplayName("알맞는 과금 정책 찾기")
     @ParameterizedTest
     @MethodSource(value = "discountChargerProvier")
-    void findByDistance(int distance, DistanceCharger... expect) {
+    void findByDistance(int distance, DistanceChargers expect) {
         //given
-        List<DistanceCharger> distanceChargers = DistanceCharger.findByDistance(distance);
+        DistanceChargers distanceChargers = DistanceCharger.findByDistance(distance);
 
         //then
-        assertThat(distanceChargers).contains(expect);
+        assertThat(distanceChargers).isEqualTo(expect);
+    }
+
+    @DisplayName("과금 정책에 따른 추가 과금 구하기")
+    @ParameterizedTest
+    @CsvSource(value = {
+            "TEN_TO_FIFTY,11,0",
+            "TEN_TO_FIFTY,15,100",
+            "TEN_TO_FIFTY,20,200",
+            "OVER_FIFTY,51,0",
+            "OVER_FIFTY,58,100",
+            "OVER_FIFTY,66,200"}
+    )
+    void charge(DistanceCharger distanceCharger, int distance, int expectCharge) {
+        int charge = distanceCharger.charge(distance);
+
+        assertThat(charge).isEqualTo(expectCharge);
     }
 
     @DisplayName("과금 정책에 따른 과금 적용")
-    @Test
-    void charge() {
+    @ParameterizedTest
+    @CsvSource(value = {"11,1250", "15,1350", "58,2150"})
+    void charge(int distance, int expectFare) {
         //given
+        DistanceChargers distanceChargers = DistanceCharger.findByDistance(distance);
 
         //when
+        int fare = distanceChargers.calculateFare(distance);
 
         //then
+        assertThat(fare).isEqualTo(expectFare);
     }
 }
