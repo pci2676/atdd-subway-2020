@@ -8,6 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.web.context.WebApplicationContext;
+import wooteco.security.core.TokenResponse;
 import wooteco.subway.common.documentation.Documentation;
 import wooteco.subway.maps.map.application.MapService;
 import wooteco.subway.maps.map.dto.PathResponse;
@@ -22,9 +23,10 @@ import java.util.Map;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.payload.PayloadDocumentation.responseBody;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
@@ -38,9 +40,12 @@ public class PathDocumentation extends Documentation {
     @MockBean
     private MapService mapService;
 
+    protected TokenResponse tokenResponse;
+
     @BeforeEach
     public void setUp(WebApplicationContext context, RestDocumentationContextProvider restDocumentation) {
         super.setUp(context, restDocumentation);
+        tokenResponse = new TokenResponse("token");
     }
 
     @Test
@@ -55,7 +60,7 @@ public class PathDocumentation extends Documentation {
                 1250
         );
 
-        when(mapService.findPath(any(), any(), any())).thenReturn(pathResponse);
+        when(mapService.findPath(any(), any(), any(), any())).thenReturn(pathResponse);
 
         Map<String, Object> params = new HashMap<>();
         params.put("source", 1L);
@@ -63,6 +68,7 @@ public class PathDocumentation extends Documentation {
         params.put("type", "DISTANCE");
 
         given().log().all().
+                header("Authorization", "Bearer " + tokenResponse.getAccessToken()).
                 params(params).
                 when().
                 get("/paths").
@@ -73,13 +79,13 @@ public class PathDocumentation extends Documentation {
                                 "map/paths",
                                 getDocumentRequest(),
                                 getDocumentResponse(),
+                                requestHeaders(
+                                        headerWithName("Authorization").optional().description("Bearer auth credentials")
+                                ),
                                 requestParameters(
                                         parameterWithName("source").description("출발역 아이디"),
                                         parameterWithName("target").description("도착역 아이디"),
                                         parameterWithName("type").description("노선 조회 타입")
-                                ),
-                                responseBody(
-
                                 ),
                                 responseFields(
                                         fieldWithPath("stations.[]").type(JsonFieldType.ARRAY).description("노선 목록"),
