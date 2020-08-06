@@ -41,7 +41,7 @@
 
 ### 요구사항
 
-- [ ] 백엔드 요금 조회 api를 프론트엔드에서 사용할 수 있게 연동
+- [x] 백엔드 요금 조회 api를 프론트엔드에서 사용할 수 있게 연동
 - [ ] [템플릿 리터럴](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals)을 이용해 현재 시간을 사용자가 보기 편한 형식으로 문자열 렌더링
 - [ ] validator를 구현해, form의 유효성을 검사
  - [ ]  path와 departureTime form의 validation을 구현하기
