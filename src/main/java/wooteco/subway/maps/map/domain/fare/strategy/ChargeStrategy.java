@@ -1,12 +1,9 @@
 package wooteco.subway.maps.map.domain.fare.strategy;
 
 import wooteco.subway.maps.map.domain.SubwayPath;
-import wooteco.subway.maps.station.domain.Station;
-
-import java.util.Map;
 
 public interface ChargeStrategy {
-    boolean fulfill(SubwayPath subwayPath, Map<Long, Station> stations);
+    boolean fulfill(SubwayPath subwayPath);
 
-    int apply(SubwayPath subwayPath, Map<Long, Station> stations);
+    int apply(SubwayPath subwayPath);
 }

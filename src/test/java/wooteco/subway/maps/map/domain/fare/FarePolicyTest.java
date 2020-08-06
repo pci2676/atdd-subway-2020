@@ -9,7 +9,6 @@ import wooteco.subway.maps.map.domain.SubwayPath;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -29,7 +28,7 @@ class FarePolicyTest {
         when(subwayPath.calculateDistance()).thenReturn(11);
 
         //when
-        FarePolicies farePolicies = FarePolicy.findBy(subwayPath, new HashMap<>());
+        FarePolicies farePolicies = FarePolicy.findBy(subwayPath);
 
         //then
         assertThat(farePolicies).isEqualTo(new FarePolicies(Arrays.asList(DISTANCE_POLICY, DEFAULT_POLICY)));
@@ -41,8 +40,8 @@ class FarePolicyTest {
         when(subwayPath.calculateDistance()).thenReturn(15);
 
         //when
-        FarePolicies farePolicies = FarePolicy.findBy(subwayPath, new HashMap<>());
-        int calculateFare = farePolicies.calculateFare(subwayPath, new HashMap<>());
+        FarePolicies farePolicies = FarePolicy.findBy(subwayPath);
+        int calculateFare = farePolicies.calculateFare(subwayPath);
 
         //then
         assertThat(calculateFare).isEqualTo(1350);

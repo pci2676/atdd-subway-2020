@@ -17,8 +17,8 @@ public class PathResponseAssembler {
                 .collect(Collectors.toList());
 
         int distance = subwayPath.calculateDistance();
-        int fare = FarePolicy.findBy(subwayPath, stations)
-                .calculateFare(subwayPath, stations);
+        int fare = FarePolicy.findBy(subwayPath)
+                .calculateFare(subwayPath);
 
         if (loginMember != null) {
             fare = loginMember.discountFare(fare);
