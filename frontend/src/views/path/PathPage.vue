@@ -209,6 +209,10 @@
     computed: {
       ...mapGetters(['stations', 'pathResult']),
       getCurrentTime() {
+        const today = new Date()
+        this.hour = today.getHours()
+        this.dayTime = this.hour > 12 ? 'pm' : 'am'
+        this.minute = today.getMinutes()
         const {hour, minute} = this.departureTimeView
         return `${hour > 12 ? '오후' : '오전'} ${hour < 10 ? `0${hour}` : hour}:${minute < 10 ? `0${minute}` : minute}`
       }
