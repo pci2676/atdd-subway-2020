@@ -1,11 +1,13 @@
 package wooteco.subway.maps.map.domain.fare;
 
 import wooteco.subway.maps.map.domain.SubwayPath;
+import wooteco.subway.maps.map.domain.fare.distance.DistanceCharger;
+import wooteco.subway.maps.map.domain.fare.distance.DistanceChargers;
 import wooteco.subway.maps.station.domain.Station;
 
 import java.util.Map;
 
-public class DistanceFarePolicy implements FareStrategy {
+public class DistanceChargeStrategy implements ChargeStrategy {
 
     private static final int DEFAULT_DISTANCE = 10;
 
@@ -18,14 +20,7 @@ public class DistanceFarePolicy implements FareStrategy {
     @Override
     public int apply(final SubwayPath subwayPath, final Map<Long, Station> stations, final int fare) {
         int distance = subwayPath.calculateDistance();
-
-        int count = 0;
-
-        if (distance > 50) {
-            count = distance / 8;
-        } else {
-            count = distance / 5;
-        }
-        return 0;
+        DistanceChargers distanceChargers = DistanceCharger.findByDistance(distance);
+        return distanceChargers.calculateCharge(distance);
     }
 }
