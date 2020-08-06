@@ -43,12 +43,12 @@
 
 - [x] 백엔드 요금 조회 api를 프론트엔드에서 사용할 수 있게 연동
 - [ ] [템플릿 리터럴](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals)을 이용해 현재 시간을 사용자가 보기 편한 형식으로 문자열 렌더링
-- [ ] validator를 구현해, form의 유효성을 검사
- - [ ]  path와 departureTime form의 validation을 구현하기
+- [x] validator를 구현해, form의 유효성을 검사
+ - [x]  path와 departureTime form의 validation을 구현하기
     - 공통적으로는 빈 값이 없는지 확인하는 로직이 필요합니다.
  - path form에서 필요한 유효성 검사
-    - [ ] source: 유효한 Id 값인지 검사 (예를 들면, 양의 정수, 자연수 등)
-    - [ ] target: 유효한 Id 값인지 검사 (예를 들면, 양의 정수, 자연수 등)
+    - [x] source: 유효한 Id 값인지 검사 (예를 들면, 양의 정수, 자연수 등)
+    - [x] target: 유효한 Id 값인지 검사 (예를 들면, 양의 정수, 자연수 등)
  - departureTime form에서 필요한 검사
     - [ ] dayTime: '오전' or '오후'인지 검사
     - [ ] hour: 숫자 타입, 1~12 사이의 정수인지 검사

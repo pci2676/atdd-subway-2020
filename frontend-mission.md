@@ -69,11 +69,11 @@ const actions = {
 
 ### 2. validator 구현
 
-- [ ]  path와 departureTime form의 validation을 구현하기
+- [x]  path와 departureTime form의 validation을 구현하기
 - 공통적으로는 빈 값이 없는지 확인하는 로직이 필요합니다.
 - path form에서 필요한 유효성 검사
-    - [ ] source: 유효한 Id 값인지 검사 (예를 들면, 양의 정수, 자연수 등)
-    - [ ] target: 유효한 Id 값인지 검사 (예를 들면, 양의 정수, 자연수 등)
+    - [x] source: 유효한 Id 값인지 검사 (예를 들면, 양의 정수, 자연수 등)
+    - [x] target: 유효한 Id 값인지 검사 (예를 들면, 양의 정수, 자연수 등)
 - departureTime form에서 필요한 검사
     - [ ] dayTime: '오전' or '오후'인지 검사
     - [ ] hour: 숫자 타입, 1~12 사이의 정수인지 검사
@@ -109,7 +109,7 @@ const validator = {
 
 ### 3. 현재 시간을 보여주는 `getCurrentTime` 메서드 구현
 
-- [ ]  현재시간을 아래 format처럼 보이도록,  `frontend/src/views/path/pathPage.vue` 의 208line에 있는 `getCurrentTime`을 구현합니다.
+- [x]  현재시간을 아래 format처럼 보이도록,  `frontend/src/views/path/pathPage.vue` 의 208line에 있는 `getCurrentTime`을 구현합니다.
 
 <img width="400" src="https://techcourse-storage.s3.ap-northeast-2.amazonaws.com/e656d0d51639446f93cd3af7222492dd">
 
@@ -128,7 +128,7 @@ getCurrentTime() {
 
 ### 4. 검색결과를 불러오는 `onSearchResult` 메서드 구현
 
-- [ ]  요금조회를 위해 검색 버튼을 눌렀을 때 실행되는 이벤트 핸들러를 구현합니다.
+- [x]  요금조회를 위해 검색 버튼을 눌렀을 때 실행되는 이벤트 핸들러를 구현합니다.
 - `frontend/src/views/path/PathPage.vue`에서 `onSearchResult()`를 구현합니다.
 - `onSearchResult()` 는 사용자 입력값을 받은 값을 이용해 서버에 요청하고, response를 받아오는 메서드입니다.
 - try ~ catch 문에서 try 부분을 구현합니다.
