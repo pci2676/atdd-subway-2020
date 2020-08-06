@@ -1,6 +1,7 @@
 package wooteco.subway.maps.map.domain.fare;
 
 import wooteco.subway.maps.map.domain.SubwayPath;
+import wooteco.subway.maps.map.domain.fare.distance.DistanceChargeStrategy;
 import wooteco.subway.maps.station.domain.Station;
 
 import java.util.Arrays;
